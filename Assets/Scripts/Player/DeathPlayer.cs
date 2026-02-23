@@ -12,10 +12,6 @@ public class DeathPlayer : MonoBehaviour
 
         Debug.Log("Player died");
 
-        // TODO later:
-        // - Play death animation
-        // - Subtract life
-        // - Restart room
-        // - Reset player position
+        GameFlowManager.I.OnPlayerDied();
     }
 }

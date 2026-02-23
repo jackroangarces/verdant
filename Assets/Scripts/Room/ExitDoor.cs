@@ -21,8 +21,6 @@ public class ExitDoor : MonoBehaviour
     {
         ApplyState(state);
     }
-
-    void Start() { UnlockAndOpen(); }
     public void UnlockAndOpen()
     {
         if (state != DoorState.Locked) return;
@@ -63,13 +61,13 @@ public class ExitDoor : MonoBehaviour
                 break;
         }
     }
-
-    void OnTriggerEnter2D(Collider2D other)
+    public void TryEnterDoor(Collider2D other)
     {
+        Debug.Log("Door trigger hit by: " + other.name);
         if (state != DoorState.Open) return;
         if (!other.CompareTag("Player")) return;
 
-        Debug.Log("ExitDoor entered - TODO: transition to next room");
+        GameFlowManager.I.NextRoom();
         OnDoorEntered?.Invoke();
     }
 }
